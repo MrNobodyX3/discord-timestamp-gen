@@ -34,12 +34,12 @@ function endCap(selection: number) {
 
 function App() {
   const [time, setTime] = useState({
-    month: 0,
-    day: 0,
-    year: 0,
-    hour: 0,
-    minute: 0,
-    second: 0,
+    month: new Date().getMonth(),
+    day: new Date().getDate(),
+    year: new Date().getFullYear(),
+    hour: new Date().getHours(),
+    minute: new Date().getMinutes(),
+    second: new Date().getSeconds(),
   });
   const [stampType, setStampType] = useState(0);
 
