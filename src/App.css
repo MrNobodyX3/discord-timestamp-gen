@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,16 +12,84 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.Date > select {
+  max-height: 100px;
+  overflow-y: auto;
+  border: none;
+  background-color: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Time > select {
+  border: none;
+  background-color: none;
+}
+
+.Tag > select {
+  border: none;
+  background-color: none;
+}
+
+.Markdown {
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  border: none;
+  background-color: none;
+}
+
+.Markdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: auto;
+  position: relative;
+}
+
+.Code {
+  width: 100%;
+  font-size: calc(10px + 2vmin);
+  line-height: 1.5;
+  border-radius: 0.3em;
+  padding: 0.2em;
+  border: 1px solid #ddd;
+  background-color: rgb(40, 55, 63);
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.Markdown > span {
+  display: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.Markdown:hover > span {
+  position: absolute;
+  right: 0;
+  display: block;
+  border-radius: 0.3em;
+  border: 1px solid #ddd;
+  background-color: rgba(181, 230, 255, 0.326);
+  color: rgb(255, 255, 255);
+}
+
+.Markdown:active{
+  transform: scale(0.95);
+}
+
+.Markdown:active > span {
+  background-color: rgb(181, 230, 255);
+  color: black;
 }

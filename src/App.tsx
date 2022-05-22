@@ -39,14 +39,14 @@ function App() {
     year: new Date().getFullYear(),
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
-    second: new Date().getSeconds(),
+    second: 0,
   });
   const [stampType, setStampType] = useState(0);
 
   return (
     <div className="App">
       <header className="App-header">
-        <div>
+        <div className="Date">
           {/* set defualt to current */}
           <select
             name="month"
@@ -100,6 +100,8 @@ function App() {
                 </option>
               ))}
           </select>
+        </div>
+        <div className="Time">
           <select
             name="hour"
             value={time.hour}
@@ -112,7 +114,13 @@ function App() {
               .map((_, i) => i)
               .map((hour) => (
                 <option key={hour} value={hour}>
-                  {hour}
+                  {hour > 11
+                    ? hour == 12
+                      ? 12 + "pm"
+                      : hour - 12 + "pm"
+                    : hour == 0
+                    ? 12 + "am"
+                    : hour + "am"}
                 </option>
               ))}
           </select>
@@ -128,7 +136,7 @@ function App() {
               .map((_, i) => i)
               .map((minute) => (
                 <option key={minute} value={minute}>
-                  {minute}
+                  {(minute - 10 < 0 ? "0" + minute : minute) + "m"}
                 </option>
               ))}
           </select>
@@ -144,50 +152,53 @@ function App() {
               .map((_, i) => i)
               .map((second) => (
                 <option key={second} value={second}>
-                  {second}
+                  {(second - 10 < 0 ? "0" + second : second) + "s"}
                 </option>
               ))}
           </select>
         </div>
-        <select
-          name="stamp type"
-          onChange={(e) => setStampType(parseInt(e.target.value))}
-        >
-          <option value="0">Short Date/Time</option>
-          <option value="1">Long Date/Time</option>
-          <option value="2">Short Time</option>
-          <option value="3">Long Time</option>
-          <option value="4">Short Date</option>
-          <option value="5">Long Date</option>
-          <option value="6">Reletive</option>
-        </select>
-        <div>
-          {"<t:"}
-          {getEpochTime(
-            time.month,
-            time.day,
-            time.year,
-            time.hour,
-            time.minute,
-            time.second
-          )}
-          {endCap(stampType)}
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `<t:${getEpochTime(
-                  time.month,
-                  time.day,
-                  time.year,
-                  time.hour,
-                  time.minute,
-                  time.second
-                )}${endCap(stampType)}`
-              );
-            }}
+        <div className="Tag">
+          <select
+            name="tag"
+            onChange={(e) => setStampType(parseInt(e.target.value))}
           >
-            Copy
-          </button>
+            <option value="0">Short Date/Time</option>
+            <option value="1">Long Date/Time</option>
+            <option value="2">Short Time</option>
+            <option value="3">Long Time</option>
+            <option value="4">Short Date</option>
+            <option value="5">Long Date</option>
+            <option value="6">Reletive</option>
+          </select>
+        </div>
+        <div
+          className="Markdown"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `<t:${getEpochTime(
+                time.month,
+                time.day,
+                time.year,
+                time.hour,
+                time.minute,
+                time.second
+              )}${endCap(stampType)}`
+            );
+          }}
+        >
+          <div className="Code">
+            {"<t:"}
+            {getEpochTime(
+              time.month,
+              time.day,
+              time.year,
+              time.hour,
+              time.minute,
+              time.second
+            )}
+            {endCap(stampType)}
+          </div>
+          <span>Copy</span>
         </div>
       </header>
     </div>
