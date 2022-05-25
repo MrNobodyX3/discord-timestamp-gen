@@ -168,7 +168,7 @@ function App() {
             <option value="3">Long Time</option>
             <option value="4">Short Date</option>
             <option value="5">Long Date</option>
-            <option value="6">Reletive</option>
+            <option value="6">Relative</option>
           </select>
         </div>
         <div
